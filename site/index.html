@@ -33,12 +33,20 @@
     [style*="grid-template-columns:repeat(2,1fr)"]{
       grid-template-columns:1fr !important;
     }
+    /* The featured card's right panel has a left divider; move it to the top
+       once the card is stacked. */
+    [style*="border-left:1px solid rgba(255,255,255,0.07)"]{
+      border-left:none !important;
+      border-top:1px solid rgba(255,255,255,0.07) !important;
+    }
   }
-  /* Tighten the fixed nav so the links never overflow on phones. */
-  @media (max-width:480px){
+  /* On phones, drop the section links so the nav can never overflow;
+     keep the logo and the contact CTA. */
+  @media (max-width:640px){
     #pf-nav{padding-left:16px !important;padding-right:16px !important;}
-    #pf-nav > div{gap:13px !important;}
-    #pf-nav a{font-size:12px !important;}
+    #pf-nav a[href="#work"],
+    #pf-nav a[href="#about"],
+    #pf-nav a[href="#beyond"]{display:none !important;}
   }
   /* Never allow sideways scroll from decorative/overflowing elements. */
   html,body{max-width:100%;overflow-x:hidden;}
