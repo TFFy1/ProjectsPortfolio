@@ -1,0 +1,22 @@
+# Netlify deploy config for the portfolio (static site)
+# Only the site/ folder is published. Private uploads/ and screenshots/
+# live outside it and are never served.
+
+[build]
+  publish = "site"
+
+# Security headers applied to every response.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # CSP: locks external code to the CDNs this builder export actually uses.
+    # 'unsafe-eval' is required because the page transpiles JSX in-browser via
+    # Babel-standalone; 'unsafe-inline' covers the builder's inline styles/scripts.
+    # These can be tightened later by pre-bundling the JS instead of loading it
+    # from unpkg at runtime.
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://unpkg.com; base-uri 'self'; form-action 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), camera=(), microphone=(), interest-cohort=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
