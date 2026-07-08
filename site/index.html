@@ -21,6 +21,27 @@
   @keyframes pf-pulse{0%,100%{opacity:0.45}50%{opacity:1}}
   a{color:#5b8cff;text-decoration:none;}
   a:hover{color:#8fb0ff;}
+
+  /* --- Mobile responsiveness --- */
+  /* Collapse the two-column layouts (hero, project cards, about) to a single
+     column on narrow screens. !important is required to override the builder's
+     inline grid styles. */
+  @media (max-width:820px){
+    [style*="grid-template-columns:1fr 1fr"],
+    [style*="grid-template-columns:0.85fr 1.15fr"],
+    [style*="grid-template-columns:1.05fr 0.95fr"],
+    [style*="grid-template-columns:repeat(2,1fr)"]{
+      grid-template-columns:1fr !important;
+    }
+  }
+  /* Tighten the fixed nav so the links never overflow on phones. */
+  @media (max-width:480px){
+    #pf-nav{padding-left:16px !important;padding-right:16px !important;}
+    #pf-nav > div{gap:13px !important;}
+    #pf-nav a{font-size:12px !important;}
+  }
+  /* Never allow sideways scroll from decorative/overflowing elements. */
+  html,body{max-width:100%;overflow-x:hidden;}
 </style>
 </helmet>
 
