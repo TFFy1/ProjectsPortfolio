@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;padding:0;background:#08090b;color:#e7e9ec;}
+  *{box-sizing:border-box;}
+  ::selection{background:rgba(91,140,255,0.3);color:#fff;}
+  body{-webkit-font-smoothing:antialiased;}
+  @keyframes pf-blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+  @keyframes pf-marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  @keyframes pf-pulse{0%,100%{opacity:0.45}50%{opacity:1}}
+  a{color:#5b8cff;text-decoration:none;}
+  a:hover{color:#8fb0ff;}
+</style>
+</helmet>
+
+<div id="pf-root" style="position:relative;font-family:'Space Grotesk',system-ui,sans-serif;background:#08090b;color:#e7e9ec;overflow:hidden;min-height:100vh;">
+
+  <div id="pf-glow" style="position:fixed;left:50%;top:0;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(circle,rgba(91,140,255,0.12),rgba(91,140,255,0) 65%);transition:left .25s ease-out,top .25s ease-out;"></div>
+
+  <!-- NAV -->
+  <nav id="pf-nav" style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:16px clamp(20px,5vw,48px);border-bottom:1px solid rgba(255,255,255,0);transition:background .3s,border-color .3s,backdrop-filter .3s;font-family:'JetBrains Mono',monospace;">
+    <a href="#top" style="display:flex;align-items:center;gap:9px;color:#e7e9ec;font-size:14px;font-weight:600;letter-spacing:0.01em;">
+      <span style="color:#5b8cff;font-size:11px;">■</span> MEK<span style="color:#454b55;">/</span><span style="color:#8b919c;font-weight:400;">projects</span>
+    </a>
+    <div style="display:flex;align-items:center;gap:clamp(14px,2.4vw,30px);font-size:13px;">
+      <a href="#work" style="color:#8b919c;transition:color .2s;" style-hover="color:#e7e9ec;">work</a>
+      <a href="#about" style="color:#8b919c;transition:color .2s;" style-hover="color:#e7e9ec;">about</a>
+      <a href="#beyond" style="color:#8b919c;transition:color .2s;" style-hover="color:#e7e9ec;">beyond</a>
+      <a href="#contact" style="display:inline-flex;align-items:center;gap:7px;color:#0a0c10;background:#5b8cff;padding:8px 16px;border-radius:7px;font-weight:600;transition:transform .2s,box-shadow .2s;" style-hover="transform:translateY(-1px);box-shadow:0 6px 22px rgba(91,140,255,0.35);color:#0a0c10;">contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="top" style="position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:clamp(118px,15vh,168px) clamp(20px,5vw,48px) 48px;">
+    <div style="background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:46px 46px;position:absolute;inset:0;z-index:-1;-webkit-mask-image:radial-gradient(ellipse 70% 55% at 30% 40%,#000,transparent 80%);mask-image:radial-gradient(ellipse 70% 55% at 30% 40%,#000,transparent 80%);"></div>
+    <div data-reveal="" style="max-width:900px;">
+      <div style="display:inline-flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.08em;color:#7b818b;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.02);padding:6px 13px;border-radius:100px;margin-bottom:30px;white-space:nowrap;">
+        <span style="width:7px;height:7px;border-radius:50%;background:#5b8cff;box-shadow:0 0 10px #5b8cff;animation:pf-pulse 2.4s infinite;"></span>
+        AI / LLM ENGINEER
+      </div>
+      <h1 style="margin:0;font-size:clamp(40px,7vw,86px);line-height:0.98;font-weight:600;letter-spacing:-0.028em;">
+        I design and ship<br>production <span style="color:#5b8cff;">AI&nbsp;systems.</span>
+      </h1>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:clamp(14px,1.7vw,18px);color:#8b919c;margin-top:26px;height:1.6em;">
+        <span style="color:#454b55;">$&nbsp;</span><span id="pf-type" style="color:#cbd0d8;"></span><span style="display:inline-block;width:9px;height:1.05em;background:#5b8cff;margin-left:2px;vertical-align:-2px;animation:pf-blink 1s steps(1) infinite;"></span>
+      </div>
+      <p style="max-width:600px;color:#9aa0aa;font-size:clamp(15px,1.6vw,17px);line-height:1.65;margin:26px 0 34px;">
+        I work across the full stack of LLM products: prompt and context architecture, RAG, agent design, evaluation, and deployment. Everything below is something I actually built and shipped.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;">
+        <a href="#work" style="display:inline-flex;align-items:center;gap:9px;color:#0a0c10;background:#5b8cff;padding:13px 22px;border-radius:9px;font-weight:600;font-size:15px;transition:transform .2s,box-shadow .2s;" style-hover="transform:translateY(-2px);box-shadow:0 10px 30px rgba(91,140,255,0.35);color:#0a0c10;">
+          Browse the work <span style="font-family:'JetBrains Mono',monospace;">→</span>
+        </a>
+        <a href="https://github.com/TFFy1" style="display:inline-flex;align-items:center;gap:9px;color:#e7e9ec;background:transparent;border:1px solid rgba(255,255,255,0.14);padding:13px 22px;border-radius:9px;font-weight:500;font-size:15px;transition:border-color .2s,background .2s;" style-hover="border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.03);color:#e7e9ec;">
+          GitHub
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MARQUEE -->
+  <div style="position:relative;z-index:2;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);padding:18px 0;overflow:hidden;background:rgba(255,255,255,0.012);">
+    <div style="display:flex;width:max-content;animation:pf-marquee 34s linear infinite;font-family:'JetBrains Mono',monospace;font-size:14px;color:#7b818b;">
+      <span style="display:flex;gap:0;">
+        <span style="padding:0 26px;">Prompt Engineering</span><span style="color:#5b8cff;">/</span><span style="padding:0 26px;">Context Engineering</span><span style="color:#5b8cff;">/</span><span style="padding:0 26px;">RAG</span><span style="color:#5b8cff;">/</span><span style="padding:0 26px;">Agent Design</span><span style="color:#5b8cff;">/</span><span style="padding:0 26px;">LLM Deployment</span><span style="color:#5b8cff;">/</span><span style="padding:0 26px;">LangChain</span><span style="color:#5b8cff;">/</span><span style="padding:0 26px;">n8n</span><span style="color:#5b8cff;">/</span><span style="padding:0 26px;">Fine-tuning</span><span style="color:#5b8cff;">/</span><span style="padding:0 26px;">LLM Evaluation</span><span style="color:#5b8cff;">/</span>
+      </span>
+      <span style="display:flex;gap:0;" aria-hidden="true">
+        <span style="padding:0 26px;">Prompt Engineering</span><span style="color:#5b8cff;">/</span><span style="padding:0 26px;">Context Engineering</span><span style="color:#5b8cff;">/</span><span style="padding:0 26px;">RAG</span><span style="color:#5b8cff;">/</span><span style="padding:0 26px;">Agent Design</span><span style="color:#5b8cff;">/</span><span style="padding:0 26px;">LLM Deployment</span><span style="color:#5b8cff;">/</span><span style="padding:0 26px;">LangChain</span><span style="color:#5b8cff;">/</span><span style="padding:0 26px;">n8n</span><span style="color:#5b8cff;">/</span><span style="padding:0 26px;">Fine-tuning</span><span style="color:#5b8cff;">/</span><span style="padding:0 26px;">LLM Evaluation</span><span style="color:#5b8cff;">/</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- WORK / PROJECTS -->
+  <section id="work" style="position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:72px clamp(20px,5vw,48px) 20px;">
+    <div data-reveal="" style="display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:34px;">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#5b8cff;letter-spacing:0.06em;margin-bottom:12px;">// SELECTED WORK</div>
+        <h2 style="margin:0;font-size:clamp(28px,4vw,44px);font-weight:600;letter-spacing:-0.025em;line-height:1.05;">Things I have built.</h2>
+      </div>
+      <p style="margin:0;max-width:340px;color:#8b919c;font-size:14px;line-height:1.6;">A mix of a founded product, client systems, and personal builds. Each one shipped end to end.</p>
+    </div>
+
+    <!-- FEATURED: EXPLAINCHESS -->
+    <div id="chess" data-reveal="" style="border:1px solid rgba(255,255,255,0.1);border-radius:20px;overflow:hidden;background:linear-gradient(180deg,#0e1014,#0a0c0f);box-shadow:0 30px 90px rgba(0,0,0,0.5);margin-bottom:clamp(16px,2.5vw,28px);position:relative;">
+      <div style="position:absolute;inset:0;background:radial-gradient(ellipse 55% 60% at 78% 30%,rgba(91,140,255,0.09),transparent 70%);pointer-events:none;"></div>
+      <div style="display:grid;grid-template-columns:1.05fr 0.95fr;gap:0;position:relative;">
+        <div style="padding:clamp(28px,4vw,52px);">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px;flex-wrap:wrap;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#5b8cff;letter-spacing:0.06em;">FEATURED / FOUNDED PRODUCT</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#3ddc84;display:inline-flex;align-items:center;gap:7px;"><span style="width:7px;height:7px;border-radius:50%;background:#3ddc84;box-shadow:0 0 9px #3ddc84;animation:pf-pulse 2s infinite;"></span>LIVE</span>
+          </div>
+          <h3 style="margin:0;font-size:clamp(30px,4vw,48px);font-weight:600;letter-spacing:-0.025em;line-height:1.04;">ExplainChess<span style="color:#5b8cff;">.ai</span></h3>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#7b818b;margin-top:14px;">A chess-specialised LLM coaching product.</div>
+          <p style="font-size:16px;line-height:1.7;color:#9aa0aa;margin:22px 0 28px;max-width:480px;">
+            I engineered the full prompt and context architecture behind a coach that gives personalised explanations for players of any level. I owned the whole lifecycle solo, from problem discovery and context design to REST API integration and deployment.
+          </p>
+          <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:32px;">
+            <div style="display:flex;gap:12px;align-items:flex-start;"><span style="color:#5b8cff;font-family:'JetBrains Mono',monospace;font-size:13px;margin-top:2px;">→</span><span style="font-size:15px;color:#c2c7cf;">Custom context layer that adapts explanations to a player's rating and mistakes.</span></div>
+            <div style="display:flex;gap:12px;align-items:flex-start;"><span style="color:#5b8cff;font-family:'JetBrains Mono',monospace;font-size:13px;margin-top:2px;">→</span><span style="font-size:15px;color:#c2c7cf;">REST API integration and a live deployment serving real sessions.</span></div>
+            <div style="display:flex;gap:12px;align-items:flex-start;"><span style="color:#5b8cff;font-family:'JetBrains Mono',monospace;font-size:13px;margin-top:2px;">→</span><span style="font-size:15px;color:#c2c7cf;">Reached active investor negotiations within 3 months of launch.</span></div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9aa0aa;border:1px solid rgba(255,255,255,0.12);padding:6px 12px;border-radius:7px;">Prompt Architecture</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9aa0aa;border:1px solid rgba(255,255,255,0.12);padding:6px 12px;border-radius:7px;">Context Design</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9aa0aa;border:1px solid rgba(255,255,255,0.12);padding:6px 12px;border-radius:7px;">REST API</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#9aa0aa;border:1px solid rgba(255,255,255,0.12);padding:6px 12px;border-radius:7px;">Deployment</span>
+          </div>
+        </div>
+        <div style="position:relative;border-left:1px solid rgba(255,255,255,0.07);background:#0a0c0f;padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;gap:20px;justify-content:center;">
+          <div style="border:1px solid rgba(255,255,255,0.08);border-radius:12px;background:#0e1014;overflow:hidden;font-family:'JetBrains Mono',monospace;font-size:13px;">
+            <div style="padding:9px 13px;border-bottom:1px solid rgba(255,255,255,0.06);color:#5a606b;display:flex;align-items:center;gap:7px;"><span style="width:8px;height:8px;border-radius:50%;background:#5b8cff;"></span>explainchess . session</div>
+            <div style="padding:16px;line-height:1.65;">
+              <div style="color:#5a606b;">&gt; <span style="color:#cbd0d8;">why is 1.e4 e5 2.Nf3 strong for white?</span></div>
+              <div style="margin-top:12px;color:#8fb0ff;">explainchess:</div>
+              <div style="color:#aab0ba;margin-top:4px;">It develops a knight, attacks e5, and prepares quick castling. White fights for the center and opens lines for the kingside pieces<span style="display:inline-block;width:7px;height:1em;background:#5b8cff;margin-left:2px;vertical-align:-2px;animation:pf-blink 1s steps(1) infinite;"></span></div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(8,1fr);width:min(220px,70%);aspect-ratio:1/1;margin:0 auto;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);" id="pf-board"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT GRID -->
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2.5vw,28px);">
+
+      <!-- Shopify -->
+      <div data-reveal="" style="border:1px solid rgba(255,255,255,0.09);border-radius:18px;padding:clamp(26px,3vw,38px);background:#0b0d10;transition:border-color .25s,transform .25s;display:flex;flex-direction:column;" style-hover="border-color:rgba(91,140,255,0.35);transform:translateY(-3px);">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#5b8cff;letter-spacing:0.05em;">Company Project</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#5a606b;">2026</span>
+        </div>
+        <h3 style="margin:0;font-size:clamp(21px,2.4vw,26px);font-weight:600;letter-spacing:-0.015em;">Shopify Store AI Manager</h3>
+        <p style="font-size:15px;line-height:1.65;color:#9aa0aa;margin:14px 0 20px;flex:1;">
+          An autonomous store manager that connects the Shopify API to LLMs, handling product management and large-inventory analysis for business owners. Turned a long manual process into an agent that runs it on its own.
+        </p>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+          <span style="font-size:clamp(30px,3.5vw,40px);font-weight:600;letter-spacing:-0.02em;color:#e7e9ec;line-height:1;">80%</span>
+          <span style="font-size:13px;color:#7b818b;line-height:1.4;">less time on product<br>and inventory work</span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#9aa0aa;border:1px solid rgba(255,255,255,0.1);padding:5px 10px;border-radius:6px;">Shopify API</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#9aa0aa;border:1px solid rgba(255,255,255,0.1);padding:5px 10px;border-radius:6px;">LLM Agent</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#9aa0aa;border:1px solid rgba(255,255,255,0.1);padding:5px 10px;border-radius:6px;">Automation</span>
+        </div>
+      </div>
+
+      <!-- Dean's Faculty Evaluation -->
+      <div data-reveal="" data-delay="80" style="border:1px solid rgba(255,255,255,0.09);border-radius:18px;padding:clamp(26px,3vw,38px);background:#0b0d10;transition:border-color .25s,transform .25s;display:flex;flex-direction:column;" style-hover="border-color:rgba(91,140,255,0.35);transform:translateY(-3px);">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#5b8cff;letter-spacing:0.05em;">AL AKHAWAYN UNIVERSITY</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#5a606b;">ONGOING</span>
+        </div>
+        <h3 style="margin:0;font-size:clamp(21px,2.4vw,26px);font-weight:600;letter-spacing:-0.015em;">Faculty Evaluation AI Assistant</h3>
+        <p style="font-size:15px;line-height:1.65;color:#9aa0aa;margin:14px 0 20px;flex:1;">
+          An AI companion for faculty and evaluators to prepare and assess evaluation submissions, keeping every submission aligned with University policy while cutting the busywork.
+        </p>
+        <div style="display:flex;align-items:center;gap:20px;margin-bottom:20px;">
+          <div style="display:flex;align-items:baseline;gap:8px;"><span style="font-size:clamp(26px,3vw,34px);font-weight:600;letter-spacing:-0.02em;color:#e7e9ec;line-height:1;">60%</span><span style="font-size:12px;color:#7b818b;">less time</span></div>
+          <div style="display:flex;align-items:baseline;gap:8px;"><span style="font-size:clamp(26px,3vw,34px);font-weight:600;letter-spacing:-0.02em;color:#e7e9ec;line-height:1;">+30%</span><span style="font-size:12px;color:#7b818b;">compliance</span></div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#9aa0aa;border:1px solid rgba(255,255,255,0.1);padding:5px 10px;border-radius:6px;">RAG</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#9aa0aa;border:1px solid rgba(255,255,255,0.1);padding:5px 10px;border-radius:6px;">Policy Grounding</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#9aa0aa;border:1px solid rgba(255,255,255,0.1);padding:5px 10px;border-radius:6px;">LLM</span>
+        </div>
+      </div>
+
+      <!-- ABL Agentic -->
+      <div data-reveal="" style="border:1px solid rgba(255,255,255,0.09);border-radius:18px;padding:clamp(26px,3vw,38px);background:#0b0d10;transition:border-color .25s,transform .25s;display:flex;flex-direction:column;" style-hover="border-color:rgba(91,140,255,0.35);transform:translateY(-3px);">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#5b8cff;letter-spacing:0.05em;">ARAB BUILDING LEADERS</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#5a606b;">2025</span>
+        </div>
+        <h3 style="margin:0;font-size:clamp(21px,2.4vw,26px);font-weight:600;letter-spacing:-0.015em;">Private Data Chatbot + n8n Automation</h3>
+        
+        <p style="font-size:15px;line-height:1.65;color:#9aa0aa;margin:14px 0 20px;flex:1;">
+          A custom chatbot trained on proprietary company data plus an agentic n8n email-automation workflow. Replacing third-party providers removed a key data-privacy risk on sensitive client information, and automated ingestion <b><u>cut manual processing sharply</u></b>.
+        </p><div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+          <span style="font-size:15px;color:#c2c7cf;line-height:1.4;">No third-party dependency.<br><span style="color:#7b818b;">Sensitive data stays in house.</span></span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#9aa0aa;border:1px solid rgba(255,255,255,0.1);padding:5px 10px;border-radius:6px;">n8n Agents</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#9aa0aa;border:1px solid rgba(255,255,255,0.1);padding:5px 10px;border-radius:6px;">Private RAG</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#9aa0aa;border:1px solid rgba(255,255,255,0.1);padding:5px 10px;border-radius:6px;">Data Pipeline</span>
+        </div>
+      </div>
+
+      <!-- Client agent pipelines -->
+      <div data-reveal="" data-delay="80" style="border:1px solid rgba(255,255,255,0.09);border-radius:18px;padding:clamp(26px,3vw,38px);background:#0b0d10;transition:border-color .25s,transform .25s;display:flex;flex-direction:column;" style-hover="border-color:rgba(91,140,255,0.35);transform:translateY(-3px);">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#5b8cff;letter-spacing:0.05em;">CLIENT WORK</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#5a606b;">ONGOING</span>
+        </div>
+        <h3 style="margin:0;font-size:clamp(21px,2.4vw,26px);font-weight:600;letter-spacing:-0.015em;">Production Agent Pipelines</h3>
+        
+        <p style="font-size: 15px; line-height: 1.65; color: #9aa0aa; margin: 14px 0 20px; flex: 1; text-decoration-line: none">
+          Across roles at DoFactory, Ostol, and CGX I scope automation opportunities with clients and deliver agent pipelines end to end, from full-stack feature work to hosting and production maintenance. The AI features I integrated lifted one client's <b><u>conversion rate by 6%.
+        </u></b></p><div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+          <span style="font-size:15px;color:#c2c7cf;line-height:1.4;">Hundreds of hours saved<br><span style="color:#7b818b;">across client operations.</span></span>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#9aa0aa;border:1px solid rgba(255,255,255,0.1);padding:5px 10px;border-radius:6px;">Agent Design</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#9aa0aa;border:1px solid rgba(255,255,255,0.1);padding:5px 10px;border-radius:6px;">Full-Stack</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#9aa0aa;border:1px solid rgba(255,255,255,0.1);padding:5px 10px;border-radius:6px;">Deployment</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" style="position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:72px clamp(20px,5vw,48px);">
+    <div style="display:grid;grid-template-columns:0.85fr 1.15fr;gap:clamp(32px,6vw,72px);align-items:center;">
+      <div data-reveal="" style="position:relative;">
+        <div style="position:absolute;inset:-16px;background:radial-gradient(circle at 50% 40%,rgba(91,140,255,0.22),transparent 70%);filter:blur(20px);z-index:-1;"></div>
+        <div style="border:1px solid rgba(255,255,255,0.1);border-radius:16px;overflow:hidden;background:#0e1014;box-shadow:0 30px 80px rgba(0,0,0,0.5);">
+          <div style="display:flex;align-items:center;gap:7px;padding:11px 14px;border-bottom:1px solid rgba(255,255,255,0.07);background:#0a0c0f;font-family:'JetBrains Mono',monospace;font-size:12px;color:#5a606b;">
+            <span style="width:11px;height:11px;border-radius:50%;background:#ff5f57;"></span>
+            <span style="width:11px;height:11px;border-radius:50%;background:#febc2e;"></span>
+            <span style="width:11px;height:11px;border-radius:50%;background:#28c840;"></span>
+            <span style="margin-left:8px;">kettani.jpeg</span>
+          </div>
+          <img src="assets/fatih.jpeg" alt="Mohamed El Fatih Kettani" style="display:block;width:100%;aspect-ratio:1/1;object-fit:cover;">
+        </div>
+      </div>
+      <div data-reveal="" data-delay="100">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#5b8cff;letter-spacing:0.06em;margin-bottom:18px;">// ABOUT</div>
+        <p style="font-size:clamp(20px,2.4vw,28px);line-height:1.45;font-weight:400;letter-spacing:-0.01em;margin:0 0 22px;color:#dce0e6;">
+          I'm an engineer who ships. I own AI products end to end, from problem discovery to what runs in production, and I move fast.
+        </p>
+        <p style="font-size:16px;line-height:1.7;color:#9aa0aa;max-width:560px;margin:0 0 32px;">
+          I study Computer Science with an AI specialisation at Al Akhawayn University, minoring in Business Administration. Alongside that I build across concurrent engineering roles and my own product, which keeps my work grounded in real users and real deadlines.
+        </p>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.07);border-radius:12px;overflow:hidden;margin-bottom:26px;">
+          <div style="background:#0b0d10;padding:16px 18px;"><div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#5a606b;letter-spacing:0.05em;margin-bottom:6px;">BASED IN</div><div style="font-size:15px;color:#e7e9ec;">Ifrane, Morocco</div></div>
+          <div style="background:#0b0d10;padding:16px 18px;"><div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#5a606b;letter-spacing:0.05em;margin-bottom:6px;">STUDYING</div><div style="font-size:15px;color:#e7e9ec;">CS, AI Specialisation</div></div>
+          <div style="background:#0b0d10;padding:16px 18px;"><div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#5a606b;letter-spacing:0.05em;margin-bottom:6px;">FOCUS</div><div style="font-size:15px;color:#e7e9ec;">LLM products, agents</div></div>
+          <div style="background:#0b0d10;padding:16px 18px;"><div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#5a606b;letter-spacing:0.05em;margin-bottom:6px;">LANGUAGES</div><div style="font-size:15px;color:#e7e9ec;">Arabic, English, French</div></div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#c2c7cf;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:6px 11px;border-radius:7px;">Python</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#c2c7cf;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:6px 11px;border-radius:7px;">React</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#c2c7cf;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:6px 11px;border-radius:7px;">PostgreSQL</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#c2c7cf;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:6px 11px;border-radius:7px;">LangChain</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#c2c7cf;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:6px 11px;border-radius:7px;">n8n</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#c2c7cf;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:6px 11px;border-radius:7px;">Supabase</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#c2c7cf;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:6px 11px;border-radius:7px;">REST APIs</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#c2c7cf;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:6px 11px;border-radius:7px;">Odoo ERP</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEYOND -->
+  <section id="beyond" style="position:relative;z-index:2;max-width:1240px;margin:0 auto;padding:20px clamp(20px,5vw,48px) 40px;">
+    <div data-reveal="" style="display:flex;align-items:center;gap:14px;margin-bottom:34px;">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#5b8cff;letter-spacing:0.06em;">// BEYOND THE CODE</span>
+      <span style="height:1px;flex:1;background:rgba(255,255,255,0.08);"></span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.5vw,28px);">
+      <div data-reveal="" style="border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:clamp(26px,3vw,38px);background:linear-gradient(160deg,#0c0e12,#0a0c0f);position:relative;overflow:hidden;">
+        <div style="position:absolute;top:-30px;right:-30px;width:160px;height:160px;display:grid;grid-template-columns:repeat(8,1fr);opacity:0.25;" id="pf-board2"></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#5b8cff;letter-spacing:0.05em;margin-bottom:16px;position:relative;">CHESS</div>
+        <h3 style="margin:0;font-size:clamp(22px,2.6vw,30px);font-weight:600;letter-spacing:-0.015em;position:relative;">2000 Elo player, and club president</h3>
+        <p style="font-size:15px;line-height:1.65;color:#9aa0aa;margin:16px 0 0;max-width:400px;position:relative;">As president of the Al Akhawayn Chess Club I scaled club revenue by 400% and doubled membership through structured classes. Chess taught me to think in systems, which is the same instinct I bring to building products.</p>
+      </div>
+      <div data-reveal="" data-delay="100" style="border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:clamp(26px,3vw,38px);background:linear-gradient(160deg,#0c0e12,#0a0c0f);">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#5b8cff;letter-spacing:0.05em;margin-bottom:16px;">ALWAYS LEARNING</div>
+        <h3 style="margin:0;font-size:clamp(22px,2.6vw,30px);font-weight:600;letter-spacing:-0.015em;">Certifications</h3>
+        <div style="display:flex;flex-direction:column;gap:11px;margin-top:20px;">
+          <div style="font-size:14px;color:#c2c7cf;line-height:1.4;">Machine Learning &amp; Deep Learning Specialisations <span style="color:#5a606b;">DeepLearning.ai / Stanford</span></div>
+          <div style="font-size:14px;color:#c2c7cf;line-height:1.4;">Software Architecture &amp; Design Patterns <span style="color:#5a606b;">University of Alberta</span></div><div style="font-size: 14px; color: #FFFFFF; line-height: 1.4; width: 433px; height: 51px">Version Control with Git <span style="color: rgb(90, 96, 107);">Atlassian<br></span><br><span style="color: #FFFFFF">Project Management Certification&nbsp;</span><span style="color: rgb(90, 96, 107);"></span><span style="color: rgb(90, 96, 107);">Google (ONGOING)<br></span></div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="position:relative;z-index:2;padding:90px clamp(20px,5vw,48px) 60px;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 60%,rgba(91,140,255,0.09),transparent 70%);z-index:-1;"></div>
+    <div data-reveal="" style="max-width:880px;margin:0 auto;text-align:center;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#5b8cff;letter-spacing:0.06em;margin-bottom:22px;">// CONTACT</div>
+      <h2 style="margin:0;font-size:clamp(34px,6vw,72px);font-weight:600;letter-spacing:-0.03em;line-height:1;">Let's talk.</h2>
+      <p style="font-size:17px;color:#9aa0aa;margin:26px auto 38px;max-width:520px;line-height:1.6;">Always up for a good engineering conversation. Reach out about any of the projects, collaboration, or whatever you happen to be building.</p>
+      <a href="https://calendly.com/m-alkettani/consultation" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:11px;color:#0a0c10;background:#5b8cff;padding:16px 30px;border-radius:11px;font-weight:600;font-size:17px;transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s ease;" style-hover="transform:translateY(-4px) scale(1.045);box-shadow:0 20px 50px rgba(91,140,255,0.55);color:#0a0c10;">
+        Book a Consult <span style="font-family:'JetBrains Mono',monospace;">→</span>
+      </a>
+      <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:24px;margin-top:36px;font-family:'JetBrains Mono',monospace;font-size:14px;">
+        <a href="https://www.linkedin.com/in/mohamed-el-fatih-al-kettani-2019301a7/" target="_blank" rel="noopener" style="display:inline-block;color:#9aa0aa;transition:color .2s,transform .22s cubic-bezier(.34,1.56,.64,1);" style-hover="color:#5b8cff;transform:translateY(-3px) scale(1.06);">LinkedIn</a>
+        <span style="color:#33383f;">·</span>
+        <a href="https://github.com/TFFy1" style="display:inline-block;color:#9aa0aa;transition:color .2s,transform .22s cubic-bezier(.34,1.56,.64,1);" style-hover="color:#5b8cff;transform:translateY(-3px) scale(1.06);">GitHub / TFFy1</a>
+        <span style="color:#33383f;">·</span>
+        <a href="tel:+212659873776" style="display:inline-block;color:#9aa0aa;transition:color .2s,transform .22s cubic-bezier(.34,1.56,.64,1);" style-hover="color:#5b8cff;transform:translateY(-3px) scale(1.06);">+212 659 873 776</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="position:relative;z-index:2;border-top:1px solid rgba(255,255,255,0.06);padding:26px clamp(20px,5vw,48px);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#5a606b;">
+    <span>© 2026 Mohamed El Fatih Kettani</span>
+    <span style="display:inline-flex;align-items:center;gap:8px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: rgb(91, 140, 255); box-shadow: rgb(91, 140, 255) 0px 0px 8px;"></span>Designed and built by Me</span>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1240,&quot;height&quot;:900},&quot;showChessPieces&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;ExplainChess&quot;,&quot;label&quot;:&quot;Show real chess pieces&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() {
+    const root = document.getElementById('pf-root');
+    if (!root) return;
+    this._root = root;
+
+    // reveal on scroll: only hide elements below the fold; in-view stays visible
+    const reveals = root.querySelectorAll('[data-reveal]');
+    const show = (el) => {
+      const d = parseInt(el.getAttribute('data-delay') || '0', 10);
+      setTimeout(() => { el.style.opacity = '1'; el.style.transform = 'none'; }, d);
+    };
+    const ro = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { show(e.target); ro.unobserve(e.target); }
+      });
+    }, { threshold: 0.06, rootMargin: '0px 0px -5% 0px' });
+    const fold = window.innerHeight * 0.85;
+    reveals.forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.top > fold) {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(26px)';
+        el.style.transition = 'opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1)';
+        ro.observe(el);
+      }
+    });
+
+    // chess boards
+    this.renderBoards();
+
+    // typing
+    this.startTyping(root);
+
+    // cursor glow
+    const glow = document.getElementById('pf-glow');
+    this._mm = (ev) => { if (glow) { glow.style.left = ev.clientX + 'px'; glow.style.top = ev.clientY + 'px'; } };
+    window.addEventListener('mousemove', this._mm);
+
+    // nav scroll state
+    const nav = document.getElementById('pf-nav');
+    this._sc = () => {
+      if (!nav) return;
+      const s = window.scrollY > 40;
+      nav.style.background = s ? 'rgba(8,9,11,0.82)' : 'rgba(8,9,11,0)';
+      nav.style.borderBottomColor = s ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0)';
+      nav.style.backdropFilter = s ? 'blur(12px)' : 'none';
+      nav.style.webkitBackdropFilter = s ? 'blur(12px)' : 'none';
+    };
+    window.addEventListener('scroll', this._sc, { passive: true });
+    this._sc();
+  }
+
+  componentWillUnmount() {
+    if (this._mm) window.removeEventListener('mousemove', this._mm);
+    if (this._sc) window.removeEventListener('scroll', this._sc);
+  }
+
+  componentDidUpdate() {
+    this.renderBoards();
+  }
+
+  renderBoards() {
+    const showPieces = this.props.showChessPieces ?? true;
+    // Featured board: position after 1.e4 e5 2.Nf3 (matches the terminal above it)
+    this.buildBoard('pf-board', {
+      withMove: true,
+      fontSize: '17px',
+      pieces: showPieces ? [
+        'rnbqkbnr',
+        'pppp.ppp',
+        '........',
+        '....p...',
+        '....P...',
+        '.....N..',
+        'PPPP.PPP',
+        'RNBQKB.R'
+      ] : null
+    });
+    // Beyond card: decorative empty board (no pieces)
+    this.buildBoard('pf-board2', {
+      withMove: false,
+      fontSize: '13px',
+      pieces: null
+    });
+  }
+
+  buildBoard(id, opts) {
+    const board = document.getElementById(id);
+    if (!board) return;
+    const { withMove, pieces, fontSize } = opts || {};
+    const GLYPH = { K:'\u2654', Q:'\u2655', R:'\u2656', B:'\u2657', N:'\u2658', P:'\u2659', k:'\u265A', q:'\u265B', r:'\u265C', b:'\u265D', n:'\u265E', p:'\u265F' };
+    board.innerHTML = '';
+    for (let r = 0; r < 8; r++) {
+      for (let c = 0; c < 8; c++) {
+        const sq = document.createElement('div');
+        const light = (r + c) % 2 === 0;
+        sq.style.background = light ? '#1a1e26' : '#0d1014';
+        sq.style.width = '100%';
+        sq.style.aspectRatio = '1/1';
+        sq.style.display = 'flex';
+        sq.style.alignItems = 'center';
+        sq.style.justifyContent = 'center';
+        sq.style.fontSize = fontSize || '16px';
+        sq.style.lineHeight = '1';
+        if (withMove && ((r === 6 && c === 4) || (r === 4 && c === 4))) {
+          sq.style.background = 'rgba(91,140,255,0.5)';
+        }
+        if (pieces) {
+          const ch = pieces[r][c];
+          if (ch && ch !== '.') {
+            const isWhite = ch === ch.toUpperCase();
+            sq.textContent = GLYPH[ch];
+            sq.style.color = isWhite ? '#f4f6fa' : '#7f8896';
+            sq.style.textShadow = isWhite ? '0 1px 2px rgba(0,0,0,0.55)' : '0 1px 1px rgba(0,0,0,0.4)';
+          }
+        }
+        board.appendChild(sq);
+      }
+    }
+  }
+
+  startTyping(root) {
+    const el = root.querySelector('#pf-type');
+    if (!el) return;
+    const words = ['prompt & context engineering', 'RAG systems & agents', 'LLM evaluation & fine-tuning', 'production deployment'];
+    let wi = 0, ci = 0, deleting = false;
+    const tick = () => {
+      if (!document.body.contains(el)) return;
+      const w = words[wi];
+      if (!deleting) {
+        ci++;
+        el.textContent = w.slice(0, ci);
+        if (ci === w.length) { deleting = true; setTimeout(tick, 1700); return; }
+      } else {
+        ci--;
+        el.textContent = w.slice(0, ci);
+        if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; }
+      }
+      setTimeout(tick, deleting ? 38 : 72);
+    };
+    tick();
+  }
+
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

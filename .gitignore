@@ -1,0 +1,11 @@
+# Private files - never publish (CVs, personal photos, builder screenshots)
+uploads/
+screenshots/
+.thumbnail
+
+# OS / editor
+.DS_Store
+Thumbs.db
+
+# Netlify local
+.netlify/
