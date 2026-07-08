@@ -2,20 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1" id="pf-viewport">
-<script>
-  // On phones, render the full desktop layout scaled to fit the screen width
-  // instead of a cramped reflow. The site is designed at 1240px wide, so we
-  // tell the browser to lay it out at 1240px and shrink it to the device width,
-  // which keeps every section proportional (portrait-friendly, no cut-off).
-  (function () {
-    var w = Math.min(window.screen.width || 9999, window.innerWidth || 9999);
-    if (w < 820) {
-      var vp = document.getElementById('pf-viewport');
-      vp.setAttribute('content', 'width=1240, initial-scale=' + (window.innerWidth / 1240));
-    }
-  })();
-</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -40,7 +27,10 @@
      beyond) to a single column on narrow screens. Class-based because the
      builder re-serialises inline styles, which breaks [style*=] matching.
      !important is required to override the inline grid styles. */
-  @media (max-width:820px){
+  /* Mobile-first result: below 768px everything is a single vertical column;
+     at >=768px the builder's inline multi-column grids are untouched, so the
+     desktop design is unchanged. */
+  @media (max-width:767.98px){
     .pf-2col{grid-template-columns:1fr !important;}
     /* Let grid children shrink below their min-content so nothing overflows
        the viewport once stacked. */
@@ -51,14 +41,15 @@
       border-left:none !important;
       border-top:1px solid rgba(255,255,255,0.07) !important;
     }
-  }
-  /* On phones, drop the section links so the nav can never overflow;
-     keep the logo and the contact CTA. */
-  @media (max-width:640px){
+    /* Readability: keep body copy at >=16px on phones. */
+    #pf-root p{font-size:16px !important;line-height:1.65;}
+    /* Drop the section links so the nav can never overflow; keep logo + CTA. */
     #pf-nav{padding-left:16px !important;padding-right:16px !important;}
     #pf-nav a[href="#work"],
     #pf-nav a[href="#about"],
     #pf-nav a[href="#beyond"]{display:none !important;}
+    /* Tap targets: nav links >=44px tall. */
+    #pf-nav a{min-height:44px;display:inline-flex;align-items:center;}
   }
   /* Never allow sideways scroll from decorative/overflowing elements. */
   html,body{max-width:100%;overflow-x:hidden;}
